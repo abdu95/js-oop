@@ -1,16 +1,3 @@
-// in JS, every function is an object
-//Circle function is an object
-// Circle. >> shows methods and properties of an object
-//Circle.name >> returns the name of the function
-//Circle.length >> returns the number of arguments
-
-// every function is an object >> every object has constructor property >> constructor points to the function that is used to create that object
-//who created this object (Circle)?
-//Circle.constructor >> in console returns: Function()
-// Function() {} >> another built in constructor
-//when we declare some function using 'function name() {} ', internally JS engine will use this 'Function() {} ' constructor to create this object
-//demo >>
-
 function Circle(radius) {
   this.radius = radius;
   this.draw = function() {
@@ -18,21 +5,17 @@ function Circle(radius) {
   };
 }
 
-// demo >>
+// .call is used to call the function
+//1 arg: this argument. pass empty {}. 'this' will reference this empty object that we pass.
+//2 arg: radius
 
-const Circle1 = new Function(
-  "radius",
-  `
-this.radius = radius;
-  this.draw = function() {
-    console.log("draw");
-  };
-`
-);
+// Circle.call({}, 1) IS SAME AS  const another = new Circle(1);
+Circle.call({}, 1);
 
-// now we can call Circle1 just like calling Circle function
+//when we use new operator, new operator internally creates empty object and pass that as the first arg to the call() method 
+//and this object (empty) will determine the context for 'this' (so this will reference {} )
 
-const circle = new Circle1(1);
+//if we dont use new, this by default will refer to global object >> window
+//// Circle.call(window, 1) IS SAME AS  const another = Circle(1);
 
-console.log(circle);
-//returns object with 2 memebers: readius & draw
+const another = new Circle(1);
