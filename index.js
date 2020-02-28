@@ -1,30 +1,16 @@
-//Constructor property
+let x = {};
 
-//every object in JS has a property called constructor 
-//and that references the function that was used to construct (or to create) that object
+//when we use this syntax (object literal), JS engine will translate it to:
+//let x = new Object();
 
-//try in console: another.constuctor >> returns Circle definition 
-//try in console: circle.constuctor >> returns Object (first letter uppercase >> function, constructor) 
+//circle object we created and returned from Factory function, 
+//because we use object literal syntax (return {} ) internally it was created using Object() constructor function
 
-//Factory function
-function createCircle(radius) {
-  return {
-    radius,
-    draw: function() {
-      console.log("draw");
-    }
-  };
-}
 
-const circle = createCircle(1);
+//In JS, we have few other built-in constructors
+//e.g.
+//new String(); >> for creating strings OR '', "", ``
+//new Boolean(); >> OR true, false -- boolean literals
+//new Number(); >> OR 1, 2, 3 ...
 
-//Constructor function
-function Circle(radius) {
-  console.log("this", this);
-  this.radius = radius;
-  this.draw = function() {
-    console.log("draw");
-  };
-}
-
-const another = new Circle(1);
+//every object has 'constructor' property and that references the function that was used to create that object
