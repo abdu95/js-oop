@@ -1,31 +1,16 @@
-//value types: Number, String, Boolean, Symbol, undefined, null
-//reference types: Object, Function, Array
+let number = 10;
 
-let x = 10;
-let y = x;
+function increase(number){
+    number++;
+}
 
-x = 20;
+increase(number);
+console.log(number);
 
-//x & y are two independent variables
-// x = 20 && y = 10
+// >> 10
+//even though we increased number by calling function: number++
 
-//when we work with primitives, the value is saved inside of the variable
-//when we copy that variable (let y = x), the value stored in the variable is copied into the new variable (y)
-//they are completely independent of each other
+//when we call increase and pass number variable, its value is copied into the parameter which is local inside the function
+//number inside function is completely independent from other variables (scope)
 
-let a = { value: 10 };
-let b = a;
-
-a.value = 20;
-
-//a.value = 20 && b.value =20
-
-//when we use an object, that object is not stored in the variable (a)
-//that object is stored in the memory, and the address of that memory location is stored inside that variable
-
-//when we copy a to b, its the address(reference) that is copied
-//both a & b pointing to the same object in the memory 
-//when we modify that object using a OR b, the changes is immediately visible to other variable
-
-//Primitives are copied by their value
-//Objects are copied by their reference
+//when we call console.log(number), we are dealing with number variable (global)
