@@ -1,16 +1,15 @@
-let number = 10;
+let obj = { value: 10 };
 
-function increase(number){
-    number++;
+function increase(obj) {
+  obj.value++;
 }
 
-increase(number);
-console.log(number);
+increase(obj);
+console.log(obj);
 
-// >> 10
-//even though we increased number by calling function: number++
+//value 11
+//when we call increase(obj) and pass obj, this object is passed by its reference
+//obj local parameter will point to the same object that we defined as variable 
 
-//when we call increase and pass number variable, its value is copied into the parameter which is local inside the function
-//number inside function is completely independent from other variables (scope)
-
-//when we call console.log(number), we are dealing with number variable (global)
+//we have two variables pointing to the same object 
+//any changes we make to the object will be visible to the other variable 
