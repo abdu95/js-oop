@@ -1,16 +1,38 @@
-let x = {};
+// in JS, every function is an object
+//Circle function is an object
+// Circle. >> shows methods and properties of an object
+//Circle.name >> returns the name of the function
+//Circle.length >> returns the number of arguments
 
-//when we use this syntax (object literal), JS engine will translate it to:
-//let x = new Object();
+// every function is an object >> every object has constructor property >> constructor points to the function that is used to create that object
+//who created this object (Circle)?
+//Circle.constructor >> in console returns: Function()
+// Function() {} >> another built in constructor
+//when we declare some function using 'function name() {} ', internally JS engine will use this 'Function() {} ' constructor to create this object
+//demo >>
 
-//circle object we created and returned from Factory function, 
-//because we use object literal syntax (return {} ) internally it was created using Object() constructor function
+function Circle(radius) {
+  this.radius = radius;
+  this.draw = function() {
+    console.log("draw");
+  };
+}
 
+// demo >>
 
-//In JS, we have few other built-in constructors
-//e.g.
-//new String(); >> for creating strings OR '', "", ``
-//new Boolean(); >> OR true, false -- boolean literals
-//new Number(); >> OR 1, 2, 3 ...
+const Circle1 = new Function(
+  "radius",
+  `
+this.radius = radius;
+  this.draw = function() {
+    console.log("draw");
+  };
+`
+);
 
-//every object has 'constructor' property and that references the function that was used to create that object
+// now we can call Circle1 just like calling Circle function
+
+const circle = new Circle1(1);
+
+console.log(circle);
+//returns object with 2 memebers: readius & draw
