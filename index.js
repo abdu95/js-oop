@@ -6,37 +6,34 @@ function Circle(radius) {
 }
 
 const circle = new Circle(10);
-//we create Circle object. objects in JS are dynamic:
-//after creating, you can add extra properties or delete some properties
 
-//e.g. imagine you are working with User object
-//a client wants to send User object to the server
-//on the server we get this User object and then we add additional stuff to it, for example:
-// user.token = 'asfasdf';
+//sometimes you need to iterate over OR enumberate the properties of an object
+//we can do that using 'for in' loop
+// key == property
 
-//we can add something extra to existing object
-//because we dont have classes, we dont need to define these properties ahead of time >> we can add them whenever we need them
-//JS: powerful and easy to use
+// in every iteration, key will hold the value of one key in this object
+//shows all properties: radius, draw
+for (let key in circle) {
+  console.log(key);
+}
 
-//adding property on the go
-// dot notation
-circle.location = { x: 1 };
+//to see values of properties
+for (let key in circle) {
+  console.log(key + ":  " + circle[key]);
+}
 
-//bracket notation - good for dynamically access property name
-circle["location"] = { x: 1 };
+//only properties (radius), not the methods (draw): typeof >> to check the type of value in circle[key]
+for (let key in circle) {
+  if (typeof circle[key] !== "function") 
+  console.log(key + ": " + circle[key]);
+}
 
-//access position property of a circle
-//at the time of writing the code, we dont know the name of the property (location), thats calculated at runtime
-const propertyName = "position";
-circle[propertyName] = { x: 1 };
+//to get all the keys of the object ()
+// Object.keys(circle) >> returns all the keys of the object as an array
 
-//another use case for using bracket notation: property name is  not valid identifiers
-const nameOfProperty = "center-position";
-//you cant access it via: circle.center-position
+const keys = Object.keys(circle);
+console.log(keys);
 
-//delete property from an existing object
-//e.g. get user object from DB and return it to USER, but you dont want to send to the USER some of the properties of the user object
-//dynamically delete properties
-
-delete circle.location;
-delete circle["location"];
+// when you want to know whether the object has given (some) property >> in operator used
+if('radius' in circle)
+console.log('Circle has a radius');
