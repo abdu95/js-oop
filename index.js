@@ -1,39 +1,37 @@
 function Circle(radius) {
   this.radius = radius;
+  this.defaultLocation = { x: 0, y: 0 };
+  this.computerOptimumLocation = function() {
+    //...
+  };
+
   this.draw = function() {
+    this.computerOptimumLocation();
     console.log("draw");
   };
 }
 
 const circle = new Circle(10);
+//problem with 'this' inside 'this'
+//circle. >> shows all: radius, draw, defaultLocation, computerOptimumLocation
+//not all members should be accessible to me, as the consumer (client) of the object
+//e.g. what happens if I set default location to false: it messes up everything
+circle.defaultLocation = false;
 
-//sometimes you need to iterate over OR enumberate the properties of an object
-//we can do that using 'for in' loop
-// key == property
+//OR maybe compute() method should only be called inside draw() method
 
-// in every iteration, key will hold the value of one key in this object
-//shows all properties: radius, draw
-for (let key in circle) {
-  console.log(key);
-}
+circle.computerOptimumLocation();
+//maybe this will put object in a bad state and ...
 
-//to see values of properties
-for (let key in circle) {
-  console.log(key + ":  " + circle[key]);
-}
+circle.draw();
+//can cause to weird error at runtime
 
-//only properties (radius), not the methods (draw): typeof >> to check the type of value in circle[key]
-for (let key in circle) {
-  if (typeof circle[key] !== "function") 
-  console.log(key + ": " + circle[key]);
-}
+// >> Abstraction
+// Hide the details (complexity) and Show the essentials
 
-//to get all the keys of the object ()
-// Object.keys(circle) >> returns all the keys of the object as an array
+// Hide defaultLocation and compute() method
+// these are implementation details, these are complexity of object
+// Hide them from the consumers of this object
+// Show only essentials >> radius and draw()
 
-const keys = Object.keys(circle);
-console.log(keys);
-
-// when you want to know whether the object has given (some) property >> in operator used
-if('radius' in circle)
-console.log('Circle has a radius');
+//DVD metaphor: inside & outside
