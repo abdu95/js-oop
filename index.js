@@ -39,5 +39,5 @@ const circle = new Circle(10);
 //it would be nicer if we could access this property like: circle.defaultLocation; >> to read, not to set: circle.getDefaultLocation = 5
 circle.getDefaultLocation();
 //test of setter validation 
-circle.defaultLocation = 5;
+
 circle.draw();
