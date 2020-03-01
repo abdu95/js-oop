@@ -1,23 +1,22 @@
-
 function Circle(radius) {
   this.radius = radius;
 
+  //this is private property
+  //we cant access it from outside >> circle. >> default not visible
+  //we want to display defaultLocation somewhere in our app: not for modifying, just for displaying
   let defaultLocation = { x: 0, y: 0 };
 
-  //we converted it to private members: this.compute >> let compute
-  //more accurately these are not private members of Circle object because technically they are not inside Circle object
-  //they are local variables that we have defined inside of Circle function
-  //OOP: private members of the Circle object
-  let computeOptimumLocation = function(factor) {
-    //...
-  };
+  //one solution
+  this.getDefaultLocation = function(){
+    return defaultLocation;
+
+  }
 
   this.draw = function() {
-    computeOptimumLocation(0.1);
-
     console.log("draw");
   };
 }
 
 const circle = new Circle(10);
+circle.getDefaultLocation();
 circle.draw();
