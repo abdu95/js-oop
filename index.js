@@ -1,12 +1,12 @@
 function Circle(radius) {
   this.radius = radius;
   this.defaultLocation = { x: 0, y: 0 };
-  this.computerOptimumLocation = function() {
+  this.computerOptimumLocation = function(factor) {
     //...
   };
 
   this.draw = function() {
-    this.computerOptimumLocation();
+    this.computerOptimumLocation(0.1);
     console.log("draw");
   };
 }
@@ -35,3 +35,8 @@ circle.draw();
 // Show only essentials >> radius and draw()
 
 //DVD metaphor: inside & outside
+
+//because computerOptimumLocation() is accessible outside, if later we add parameter to this function (factor), we should pass parameter to its call also
+//it results to number of changes in the code
+//imagine this method was not accessible from the outside.
+//then we would change only one line, when its called (line 9)
